@@ -1,0 +1,49 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+
+<html dir="ltr" lang="en-US">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>Cross-Domain Ajax Demo</title>
+    
+    <link rel="stylesheet" type="text/css" media="screen" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/main.css">
+    
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.xdomainajax.js"></script>
+	<style>
+body{
+	font: 10px "Lucida Sans Unicode";
+	background: #f4f2d2;
+	color:orangered;
+	text-align:center;
+	padding:100px;
+	text-spacing:4px;
+}
+#links{font: 20px "Lucida Sans Unicode";}
+</style>
+  </head>
+  <body>
+    <div id="wrapper">
+      <p>
+			Fetching all the links from Google Homepage
+      </p>
+    </div>
+	<div id="links"></div>
+  </body>
+  <script>
+	$.ajax({
+    url:'http://google.com/',
+    type: 'GET',
+    success: function(res) {
+        var head = $(res.responseText).find('a').each(function(idx,item) {
+			var url = $(this);
+			 $('#links').append(url);
+			  $('#links').append('<br/>');	  
+		});
+    }
+});
+  </script>
+</html>
